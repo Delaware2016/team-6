@@ -1,24 +1,26 @@
 accelerate delaware schema
 
 Users:
-	Username
+	Username (PK)
 	First Name
 	Last Name
 	email
 	Age
-	Favorites
-	Popularity
-	Popularity lvl
+	Favorite Place
+	Popularity Points
+	Popularity Level
 
 Businesses:
-	Name
-	Street Address
-	Location
+	Name (PK)
+	Street Address (PK)
+	City
+	Zip Code
 	Hours of business
 	Points
 
 Events:
-	Event Name
+	Event Name (PK)
+	Date (PK)
 	Time
 	Place
 	Description
