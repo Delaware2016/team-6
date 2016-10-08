@@ -34,30 +34,6 @@ Template.body.helpers({
     });
 
 
-    Template.body.onCreated(function() {
-        // We can use the `ready` callback to interact with the map API once the map is ready.
-        GoogleMaps.ready('exampleMap', function (map) {
-            // Add a marker to the map once it's ready
-            var marker = new google.maps.Marker({
-                position: map.options.center,
-                map: map.instance,
-<<<<<<< HEAD
-                title: 'Hello World'
-            });
-            var postion2 = new google.maps.LatLng(35, 783855, -75.549027);
-            var marker2 = new google.maps.Marker({
-                position: map.options.position2,
-                map: map.instance,
-                title: 'new marker'
-=======
-                title: 'Christiana'
->>>>>>> 208ff215eb42014caa39476ee64f2a41786f3239
-            });
-
-        });
-
-    });
-
     Router.route('/',{
         name: 'home',
         template: 'home',
@@ -88,9 +64,11 @@ Template.body.helpers({
 var supportedTypes = ['Map', 'StreetViewPanorama'];
 
 GoogleMaps = {
-    load: _.once(function(options) {
-        options = _.extend({ v: '3.exp' }, options);
-        var params = _.map(options, function(value, key) { return key + '=' + value; }).join('&');
+    load: _.once(function (options) {
+        options = _.extend({v: '3.exp'}, options);
+        var params = _.map(options, function (value, key) {
+            return key + '=' + value;
+        }).join('&');
         var script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = 'https://maps.googleapis.com/maps/api/js?' + params +
@@ -99,18 +77,18 @@ GoogleMaps = {
         document.body.appendChild(script);
     }),
     utilityLibraries: [],
-    loadUtilityLibrary: function(path) {
+    loadUtilityLibrary: function (path) {
         this.utilityLibraries.push(path);
     },
     _loaded: new ReactiveVar(false),
-    loaded: function() {
+    loaded: function () {
         return this._loaded.get();
     },
     maps: {},
     _callbacks: {},
-    initialize: function() {
+    initialize: function () {
         this._loaded.set(true);
-        _.each(this.utilityLibraries, function(path) {
+        _.each(this.utilityLibraries, function (path) {
             var script = document.createElement('script');
             script.type = 'text/javascript';
             script.src = path;
@@ -118,15 +96,15 @@ GoogleMaps = {
             document.body.appendChild(script);
         });
     },
-    _ready: function(name, map) {
-        _.each(this._callbacks[name], function(cb) {
+    _ready: function (name, map) {
+        _.each(this._callbacks[name], function (cb) {
             if (_.isFunction(cb)) {
                 cb(map);
             }
         });
     },
-    ready: function(name, cb) {
-        if (! this._callbacks[name]) {
+    ready: function (name, cb) {
+        if (!this._callbacks[name]) {
             this._callbacks[name] = [];
         }
         // make sure we run the callback only once
@@ -140,10 +118,10 @@ GoogleMaps = {
     //       return options();
     //   };
     // },
-    get: function(name) {
+    get: function (name) {
         return this.maps[name];
     },
-    _create: function(name, options) {
+    _create: function (name, options) {
         var self = this;
         self.maps[name] = {
             instance: options.instance,
@@ -154,59 +132,67 @@ GoogleMaps = {
             options.instance.setVisible(true);
             self._ready(name, self.maps[name]);
         } else {
-            google.maps.event.addListener(options.instance, 'tilesloaded', function() {
+            google.maps.event.addListener(options.instance, 'tilesloaded', function () {
                 self._ready(name, self.maps[name]);
             });
         }
     },
-    create: function(options) {
+    create: function (options) {
         // default to Map
         var type = options.type ? options.type : 'Map';
-        if (! _.include(supportedTypes, type)) {
+        if (!_.include(supportedTypes, type)) {
             throw new Meteor.Error("GoogleMaps - Invalid type argument: " + type);
         }
 
-        this._create(options.name, {
-            type: type,
-            instance: new google.maps[type](options.element, options.options),
-            options: options.options
+        //    this._create(options.name, {
+        //        type: type,
+        //        instance: new google.maps[typ    // options: function(options) {
+        //   var self = this;
+        //   return function() {
+        //     if (self.loaded())
+        //       return options();
+        //   };
+        // },e](options.element, options.options),
+        //          options: options.options
+        //  });
+        //}
+//};
+
+        Template.googleMap.onRendered(function () {
+            var self = this;
+            self.autorun(function (c) {
+                // if the api has loaded
+                if (GoogleMaps.loaded()) {
+                    var data = Template.currentData();
+
+                    if (!data.options) {
+                        return;
+                    }
+                    if (!data.name) {
+                        throw new Meteor.Error("GoogleMaps - Missing argument: name");
+                    }
+
+                    self._name = data.name;
+
+                    var canvas = self.$('.map-canvas').get(0);
+
+                    GoogleMaps.create({
+                        name: data.name,
+                        type: data.type,
+                        element: canvas,
+                        options: data.options
+                    });
+
+                    c.stop();
+                }
+            });
+        });
+
+        Template.googleMap.onDestroyed(function () {
+            if (GoogleMaps.maps[this._name]) {
+                google.maps.event.clearInstanceListeners(GoogleMaps.maps[this._name].instance);
+                delete GoogleMaps.maps[this._name];
+            }
         });
     }
-};
-
-Template.googleMap.onRendered(function() {
-    var self = this;
-    self.autorun(function(c) {
-        // if the api has loaded
-        if (GoogleMaps.loaded()) {
-            var data = Template.currentData();
-
-            if (! data.options) {
-                return;
-            }
-            if (! data.name) {
-                throw new Meteor.Error("GoogleMaps - Missing argument: name");
-            }
-
-            self._name = data.name;
-
-            var canvas = self.$('.map-canvas').get(0);
-
-            GoogleMaps.create({
-                name: data.name,
-                type: data.type,
-                element: canvas,
-                options: data.options
-            });
-
-            c.stop();
-        }
-    });
-});
-
-Template.googleMap.onDestroyed(function() {
-    if (GoogleMaps.maps[this._name]) {
-        google.maps.event.clearInstanceListeners(GoogleMaps.maps[this._name].instance);
-        delete GoogleMaps.maps[this._name];
-    }
-});
+}
