@@ -32,7 +32,7 @@ if (Meteor.isClient) {
             if (GoogleMaps.loaded()) {
                 // Map initialization options
                 return {
-                    center: new google.maps.LatLng(39.783855, -75.549027),
+                    center: new google.maps.LatLng(39.678476, -75.651646),
                     zoom: 15
                 };
             }
@@ -46,14 +46,9 @@ if (Meteor.isClient) {
             var marker = new google.maps.Marker({
                 position: map.options.center,
                 map: map.instance,
-                title: 'Hello World'
+                title: 'Christiana'
             });
-            var postion2= new google.maps.LatLng(35,783855,-75.549027);
-            var marker2= new google.maps.Marker({
-                position: map.options.position2,
-                map: map.instance,
-                title: 'new marker'
-            });
+
         });
     });
 }
