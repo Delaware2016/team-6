@@ -127,7 +127,17 @@ header .hide-completed {
 }
 
 .map-container {
-    width: 800px;
+    width: 600px;
     max-width: 100%;
-    height: 500px;
+    height: 400px;
+}
+
+.user-info-form{
+    height: 600px;
+    background-color: #315481;
+}
+
+.section-header{
+    position: center;
+    text-align: center;
 }

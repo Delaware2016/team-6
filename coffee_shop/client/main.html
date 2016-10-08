@@ -1,13 +1,14 @@
 <head>
-  <title>AcceleratedDelaware</title>
+  <title>AcceleratedDelaware's "Coffee Shop"</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+
   <div class="container">
       <header>
           <h1>Welcome!</h1>
-          <a href ="#anchorPractice"> This is a practice anchor!</a>
+          <a href ="#user-info"> Tell us about yourself</a>
+          <a href ="#event-location"> Tell us where you've been</a>
           <script>
               window.fbAsyncInit = function() {
                   FB.init({
@@ -28,30 +29,44 @@
 
 
           {{> loginButtons}}
-
-          <form class="new-task">
-              <input type="text" name="text" placeholder="What do you like to do?" />
-              <br>
-              <h3>"What day do you set aside for fun?" </h3>
-              <select name="days">
-                  <option value="sunday">Sunday</option>
-                  <option value="monday">Monday</option>
-                  <option value="tuesday">Tuesday</option>
-                  <option value="wednesday">Wednesday</option>
-                  <option value="thursday">Thursday</option>
-                  <option value="friday">Friday</option>
-                  <option value="saturday">Saturday</option>
-              </select>
-              <input type="submit" name="Click here to update" />
-          </form>
       </header>
 
-      <ul>
-          {{#each tasks}}
-              {{> task}}
-          {{/each}}
-      </ul>
+      <div class="section-header">
+          <h2>Tell us about yourself</h2>
+      </div>
 
+      <a name="user-info"></a>
+      <div class="user-info-form">
+      <form class="new-task">
+          <input type="text" name="text" placeholder="What do you like to do?" />
+          <br>
+          <h3>"What day do you set aside for fun?" </h3>
+          <select name="days">
+              <option value="sunday">Sunday</option>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+          </select>
+          <input type="submit" name="User information updated"/>
+      </form>
+      </div>
+      <br>
+
+      <div class="section-header">
+          <h2>Tell us where you've been</h2>
+      </div>
+
+      <div>
+          <a name="event-location"></a>
+          <div class="map-container">
+              {{> googleMap name="exampleMap" options=exampleMapOptions}}
+          </div>
+
+      </div>
+      <br>
       <div
               class="fb-like"
               data-share="true"
@@ -61,12 +76,6 @@
 
   </div>
 
-
-
-  <div class="map-container">
-      {{> googleMap name="exampleMap" options=exampleMapOptions}}
-  </div>
-  <a name="anchorPractice"></a>
 </body>
 
 <template name="hello">
