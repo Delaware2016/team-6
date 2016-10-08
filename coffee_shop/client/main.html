@@ -1,31 +1,54 @@
 <head>
-  <title>AcceleratedDelaware</title>
+  <title>Coffee Shop</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
-  {{> info}}
-  <div class="map-container">
-      {{> googleMap name="exampleMap" options=exampleMapOptions}}
-  </div>
-
+<!--<div class="map-container">-->
+    <!--{{> googleMap name="exampleMap" options=exampleMapOptions}}-->
+<!--</div>-->
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-
 <template name="info">
-  <h2>Learn Meteor!</h2>
+  <h1>The Coffee Shop</h1>
   <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
+    <li><a href={{pathFor route='register'}}> Register </a></li>
+    <li><a href={{pathFor route='login'}}> Login </a></li>
+    <li><a href={{pathFor route='reputation'}}> Check Your Rep! </a></li>
+    <li><a href={{pathFor route='events'}}> Upcoming Events </a></li>
   </ul>
 </template>
 
+<template name="home">
+    <p>Welcome to the Coffee Shop.</p>
+
+</template>
+
+<template name="register">
+    <h2>Register</h2>
+</template>
+
+<template name="reputation">
+    <h2>Reputation</h2>
+</template>
+
+<template name="events">'
+
+    <h2>Events</h2>
+
+</template>
+
+
+<template name="login">
+    <h2>Login</h2>
+
+</template>
+
+<template name="main">
+    <h1>Accelerate Deleware!</h1>
+    <hr/>
+    <p align="center">{{> info}}</p>
+        {{> yield}}
+    <hr/>
+    <p>-Created by HGMC-</p>
+</template>
 
