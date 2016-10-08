@@ -7,6 +7,10 @@
 
   {{> hello}}
   {{> info}}
+  <div class="map-container">
+      {{> googleMap name="exampleMap" options=exampleMapOptions}}
+  </div>
+
 </body>
 
 <template name="hello">
@@ -23,3 +27,5 @@
     <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
   </ul>
 </template>
+
+
