@@ -1,17 +1,43 @@
 <body>
   <div class="container">
     <header>
-      <h1>Todo List ({{incompleteCount}})</h1>
+      <h1>Welcome!</h1>
 
-      <label class="hide-completed">
-        <input type="checkbox" />
-        Hide Completed Tasks
-      </label>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '173546286383940',
+            xfbml      : true,
+            version    : 'v2.8'
+          });
+        };
+
+        (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+
 
       {{> loginButtons}}
 
       <form class="new-task">
-        <input type="text" name="text" placeholder="Type to add new tasks, then hit Enter to add to the database!" />
+        <input type="text" name="text" placeholder="What do you like to do?" />
+        <br>
+        <h3>"What day do you set aside for fun?" </h3>
+        <select name="days">
+          <option value="sunday">Sunday</option>
+          <option value="monday">Monday</option>
+          <option value="tuesday">Tuesday</option>
+          <option value="wednesday">Wednesday</option>
+          <option value="thursday">Thursday</option>
+          <option value="friday">Friday</option>
+          <option value="saturday">Saturday</option>
+        </select>
+        <input type="submit" name="Click here to update" />
       </form>
     </header>
  
@@ -21,6 +47,15 @@
       {{/each}}
     </ul>
 
+    <div
+            class="fb-like"
+            data-share="true"
+            data-width="450"
+            data-show-faces="true">
+    </div>
+
   </div>
+
+
 </body>
 
