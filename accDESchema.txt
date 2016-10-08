@@ -27,13 +27,13 @@ Events:
 	Points
 
 Incentives:
-	Incentive Name
-	Business
-	Effective time
+	Incentive Name(PK)
+	Business(PK)
+	Effective time(PK)
 	Descritption 
 
 Levels:
-	Level
+	Level(PK)
 	Level Name
 	Unlock
 	Points to achieve
