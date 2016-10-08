@@ -1,0 +1,39 @@
+accelerate delaware schema
+
+Users:
+	Username (PK)
+	First Name
+	Last Name
+	email
+	Age
+	Favorite Place
+	Popularity Points
+	Popularity Level
+
+Businesses:
+	Name (PK)
+	Street Address (PK)
+	City
+	Zip Code
+	Hours of business
+	Points
+
+Events:
+	Event Name (PK)
+	Date (PK)
+	Time
+	Place
+	Description
+	Points
+
+Incentives:
+	Incentive Name(PK)
+	Business(PK)
+	Effective time(PK)
+	Descritption 
+
+Levels:
+	Level(PK)
+	Level Name
+	Unlock
+	Points to achieve
