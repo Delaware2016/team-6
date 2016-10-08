@@ -26,7 +26,7 @@ Template.body.helpers({
             if (GoogleMaps.loaded()) {
                 // Map initialization options
                 return {
-                    center: new google.maps.LatLng(39.783855, -75.549027),
+                    center: new google.maps.LatLng(39.678476, -75.651646),
                     zoom: 15
                 };
             }
@@ -41,6 +41,7 @@ Template.body.helpers({
             var marker = new google.maps.Marker({
                 position: map.options.center,
                 map: map.instance,
+<<<<<<< HEAD
                 title: 'Hello World'
             });
             var postion2 = new google.maps.LatLng(35, 783855, -75.549027);
@@ -48,7 +49,11 @@ Template.body.helpers({
                 position: map.options.position2,
                 map: map.instance,
                 title: 'new marker'
+=======
+                title: 'Christiana'
+>>>>>>> 208ff215eb42014caa39476ee64f2a41786f3239
             });
+
         });
 
     });
