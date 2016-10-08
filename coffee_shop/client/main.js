@@ -32,8 +32,8 @@ if (Meteor.isClient) {
             if (GoogleMaps.loaded()) {
                 // Map initialization options
                 return {
-                    center: new google.maps.LatLng(-37.8136, 144.9631),
-                    zoom: 8
+                    center: new google.maps.LatLng(39.783855, -75.549027),
+                    zoom: 15
                 };
             }
         }
@@ -45,7 +45,14 @@ if (Meteor.isClient) {
             // Add a marker to the map once it's ready
             var marker = new google.maps.Marker({
                 position: map.options.center,
-                map: map.instance
+                map: map.instance,
+                title: 'Hello World'
+            });
+            var postion2= new google.maps.LatLng(35,783855,-75.549027);
+            var marker2= new google.maps.Marker({
+                position: map.options.position2,
+                map: map.instance,
+                title: 'new marker'
             });
         });
     });
