@@ -1,0 +1,37 @@
+accelerate delaware schema
+
+Users:
+	Username
+	First Name
+	Last Name
+	email
+	Age
+	Favorites
+	Popularity
+	Popularity lvl
+
+Businesses:
+	Name
+	Street Address
+	Location
+	Hours of business
+	Points
+
+Events:
+	Event Name
+	Time
+	Place
+	Description
+	Points
+
+Incentives:
+	Incentive Name
+	Business
+	Effective time
+	Descritption 
+
+Levels:
+	Level
+	Level Name
+	Unlock
+	Points to achieve
